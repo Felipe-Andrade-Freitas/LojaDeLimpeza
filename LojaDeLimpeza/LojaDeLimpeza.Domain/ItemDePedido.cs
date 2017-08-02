@@ -28,6 +28,7 @@ namespace LojaDeLimpeza.Domain
 
         public void CalculaValorDoItem()
         {
+            this.produto.ValidaPreco();
             this.valorDoItem = this.Produto.Preco * this.QuantidadeProduto;
         }
     }
