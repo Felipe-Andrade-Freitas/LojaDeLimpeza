@@ -8,10 +8,17 @@ namespace LojaDeLimpeza.Domain
 {
     public class Categoria
     {
-        public int IdCategoria { get; set; }
+        public int idCategoria;
+        public string nomeCategoria;
 
-        public string NomeCategoria { get; set; }
-
+        public int IdCategoria { get { return this.idCategoria; } }
+        public string NomeCategoria { get { return this.nomeCategoria; } }
         public IList<Produto> ListaDeProduto = new List<Produto>();
+
+        public Categoria(int id, string nome)
+        {
+            this.idCategoria = id;
+            this.nomeCategoria = nome;
+        }
     }
 }

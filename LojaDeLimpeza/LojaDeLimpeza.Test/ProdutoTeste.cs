@@ -8,27 +8,15 @@ namespace LojaDeLimpeza.Test
     [TestClass]
     public class ProdutoTeste
     {
-        Categoria categoria = new Categoria()
-        {
-            IdCategoria = 1,
-            NomeCategoria = "Lavanderia"
-        };
-
-        Produto produto = new Produto()
-        {
-            IdProduto = 1,
-            NomeProduto = "Sabão em pó",
-            DataFabricacao = new DateTime(2017, 07, 12),
-            DataValidade = new DateTime(2018, 08, 12),
-            QuantidadeEmEstoque = 10,
-            Categoria = categoria,
-            Preco = 5
-        };
 
         [TestCategory("Adiciona Estoque")]
         [TestMethod]
         public void TestAdicionaEmEstoque()
         {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
+
             produto.AdicionaEstoque(10);
             Assert.AreEqual(20, produto.QuantidadeEmEstoque);
         }
@@ -38,6 +26,10 @@ namespace LojaDeLimpeza.Test
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestAdicionaEmEstoqueValorNegativo()
         {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
+
             produto.AdicionaEstoque(-10);
         }
 
@@ -46,6 +38,10 @@ namespace LojaDeLimpeza.Test
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestAdicionaEmEstoqueValorZero()
         {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
+
             produto.AdicionaEstoque(0);
         }
 
@@ -54,6 +50,10 @@ namespace LojaDeLimpeza.Test
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestRemoverEmEstoqueValorZero()
         {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
+
             produto.RemoverEstoque(0);
         }
 
@@ -62,6 +62,10 @@ namespace LojaDeLimpeza.Test
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestRemoverEstoqueValorNegativo()
         {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
+
             produto.RemoverEstoque(-10);
         }
 
@@ -70,7 +74,48 @@ namespace LojaDeLimpeza.Test
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestRemoverEstoqueValorZero()
         {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
+
             produto.AdicionaEstoque(0);
+        }
+
+        [TestCategory("Valida Preço do Produto")]
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
+        public void TestValidaPrecoProdutoZero()
+        {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
+
+            produto.ValidaPreco();
+        }
+
+        [TestCategory("Valida Preço do Produto")]
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
+        public void TestValidaPrecoProdutoNegativo()
+        {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, -10);
+
+            produto.ValidaPreco();
+        }
+
+        [TestCategory("Valida Preço do Produto")]
+        [TestMethod]
+        public void TestValidaPrecoProduto()
+        {
+            var categoria = new Domain.Categoria(1, "Lavanderia");
+
+            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 5);
+
+            produto.ValidaPreco();
+
+            Assert.AreEqual(5, produto.preco);
         }
     }
 }
