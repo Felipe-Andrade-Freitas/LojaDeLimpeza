@@ -11,19 +11,17 @@ namespace LojaDeLimpeza.Domain
         private int idContato;
         private string nomeDoContato;
         private string email;
-        private List<Telefone> listaDeTelefones;
 
         public int IdContato { get { return this.idContato; } }
         public string NomeDoContato { get { return this.nomeDoContato; } }
         public string Email { get { return this.email; } }
-        public List<Telefone> ListaDeTelefones { get { return this.listaDeTelefones} }
-
-        public Contato(int id, string nomeDoContato, string email, List<Telefone> listaDeTelefones)
+        public List<Telefone> ListaDeTelefones = new List<Telefone>();
+        
+        public Contato(int id, string nomeDoContato, string email)
         {
             this.idContato = id;
             this.nomeDoContato = nomeDoContato;
             this.email = email;
-            this.listaDeTelefones = listaDeTelefones;
         }
     }
 }

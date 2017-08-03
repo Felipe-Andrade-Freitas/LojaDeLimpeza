@@ -44,7 +44,6 @@ namespace LojaDeLimpeza.Domain
             this.produto.ValidaQuantidadeProduto();
             this.ValidaQuantidadeProduto();
             this.valorDoItem = this.Produto.Preco * this.QuantidadeProduto;
-        }
-        }
+        }        
     }
 }

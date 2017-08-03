@@ -11,11 +11,11 @@ namespace LojaDeLimpeza.Domain
         private int idPedido;
         private DateTime dataDoPedido;
         private Cliente cliente;
-        private float valorDoPedido;
-
+        
         public int IdPedido { get { return this.idPedido; } }
         public DateTime DataDoPedido { get { return this.dataDoPedido; } }
         public Cliente Cliente { get { return this.cliente; } }
+        public float ValorDoPedido { get; set; }
         public IList<ItemDePedido> ListaDeItemPedido = new List<ItemDePedido>();
 
         public Pedido(int id, DateTime dataDoPedido, Cliente cliente)
@@ -23,6 +23,7 @@ namespace LojaDeLimpeza.Domain
             this.idPedido = id;
             this.cliente = cliente;
             this.dataDoPedido = dataDoPedido;
+            CalculoValorDoPedido();
         }
 
         public void CalculoValorDoPedido()
@@ -34,11 +35,13 @@ namespace LojaDeLimpeza.Domain
 
                 if(preco > 0)
                 {
-                    valorDoPedido += itemDePedido.ValorDoItem;
+                    this.ValorDoPedido += itemDePedido.ValorDoItem;
                 }
-                throw new Exception("Pedido com preço negativo ou zero");
 
             }
         }
     }
 }
+
+
+               // throw new Exception("Pedido com preço negativo ou zero");
