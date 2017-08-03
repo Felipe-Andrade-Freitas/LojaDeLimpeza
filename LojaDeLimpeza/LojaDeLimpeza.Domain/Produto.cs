@@ -35,7 +35,19 @@ namespace LojaDeLimpeza.Domain
             this.preco = preco;
         }
 
-        public  void ValidaPreco()
+        public void ValidaQuantidadeProduto()
+        {
+            if (this.quantidadeEmEstoque > 0)
+            {
+
+            }
+            else
+            {
+                throw new Exception("A Quantidade deve ser maior que zero");
+            }
+        }
+
+        public void ValidaPreco()
         {
             if(this.preco > 0)
             {

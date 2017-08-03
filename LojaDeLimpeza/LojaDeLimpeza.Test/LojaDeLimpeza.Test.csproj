@@ -51,6 +51,7 @@
     <Compile Include="ProdutoTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ItemPedidoTeste.cs" />
+    <Compile Include="PedidoTeste.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

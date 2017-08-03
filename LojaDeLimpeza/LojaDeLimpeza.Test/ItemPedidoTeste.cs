@@ -12,9 +12,7 @@ namespace LojaDeLimpeza.Test
         public void TestCalculaValorDoItem()
         {
             var categoria = new Domain.Categoria(1, "Lavanderia");
-
             var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 5);
-
             var item = new Domain.ItemDePedido(1, 10, 50, produto);
 
             item.CalculaValorDoItem();
@@ -28,7 +26,6 @@ namespace LojaDeLimpeza.Test
         public void TestCalculaValorDoItemNegativo()
         {
             var categoria = new Domain.Categoria(1, "Lavanderia");
-
             var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, -5);
 
             var item = new Domain.ItemDePedido(1, 10, 50, produto);
@@ -42,7 +39,6 @@ namespace LojaDeLimpeza.Test
         public void TestCalculaValorDoItemZero()
         {
             var categoria = new Domain.Categoria(1, "Lavanderia");
-
             var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
 
             var item = new Domain.ItemDePedido(1, 10, 50, produto);
@@ -50,13 +46,12 @@ namespace LojaDeLimpeza.Test
             item.CalculaValorDoItem();
         }
 
-        [TestCategory("Valida Quantidade")]
+        [TestCategory("Valida Quantidade Item de Pedido")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
-        public void TestValidaQuantidade()
+        public void TestValidaQuantidadeItemDePedido()
         {
             var categoria = new Domain.Categoria(1, "Lavanderia");
-
             var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
 
             var item = new Domain.ItemDePedido(1, 10, 50, produto);
