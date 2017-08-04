@@ -9,7 +9,7 @@ namespace LojaDeLimpeza.Test
     public class ProdutoTeste
     {
 
-        [TestCategory("Adiciona Estoque")]
+        [TestCategory("Produto")]
         [TestMethod]
         public void TestAdicionaEmEstoque()
         {
@@ -20,7 +20,7 @@ namespace LojaDeLimpeza.Test
             Assert.AreEqual(20, produto.QuantidadeEmEstoque);
         }
 
-        [TestCategory("Adiciona Estoque")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestAdicionaEmEstoqueValorNegativo()
@@ -31,7 +31,7 @@ namespace LojaDeLimpeza.Test
             produto.AdicionaEstoque(-10);
         }
 
-        [TestCategory("Adiciona Estoque")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestAdicionaEmEstoqueValorZero()
@@ -42,7 +42,7 @@ namespace LojaDeLimpeza.Test
             produto.AdicionaEstoque(0);
         }
 
-        [TestCategory("Remover Estoque")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestRemoverEmEstoqueValorZero()
@@ -53,7 +53,7 @@ namespace LojaDeLimpeza.Test
             produto.RemoverEstoque(0);
         }
 
-        [TestCategory("Remover Estoque")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestRemoverEstoqueValorNegativo()
@@ -64,7 +64,7 @@ namespace LojaDeLimpeza.Test
             produto.RemoverEstoque(-10);
         }
 
-        [TestCategory("Remover Estoque")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestRemoverEstoqueValorZero()
@@ -75,7 +75,7 @@ namespace LojaDeLimpeza.Test
             produto.AdicionaEstoque(0);
         }
 
-        [TestCategory("Valida Preço do Produto")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestValidaPrecoProdutoZero()
@@ -86,7 +86,7 @@ namespace LojaDeLimpeza.Test
             produto.ValidaPreco();
         }
 
-        [TestCategory("Valida Preço do Produto")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestValidaPrecoProdutoNegativo()
@@ -97,7 +97,7 @@ namespace LojaDeLimpeza.Test
             produto.ValidaPreco();
         }
 
-        [TestCategory("Valida Preço do Produto")]
+        [TestCategory("Produto")]
         [TestMethod]
         public void TestValidaPrecoProduto()
         {
@@ -109,7 +109,7 @@ namespace LojaDeLimpeza.Test
             Assert.AreEqual(5, produto.preco);
         }
 
-        [TestCategory("Valida Quantidade Produto")]
+        [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestValidaQuantidadeProduto()

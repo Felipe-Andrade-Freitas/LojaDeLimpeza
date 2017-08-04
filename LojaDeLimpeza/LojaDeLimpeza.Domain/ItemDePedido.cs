@@ -26,6 +26,18 @@ namespace LojaDeLimpeza.Domain
             this.valorDoItem = valorDoItem;
         }
 
+        public bool ValidaValorDoItem()
+        {
+            if (this.valorDoItem > 0)
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception("Preço do produto deve ser maior que zero");
+            }
+        }
+
         public void ValidaQuantidadeProduto()
         {
             if(this.quantidade > 0)
@@ -40,6 +52,7 @@ namespace LojaDeLimpeza.Domain
 
         public void CalculaValorDoItem()
         {
+            this.ValidaValorDoItem();
             this.produto.ValidaPreco();
             this.produto.ValidaQuantidadeProduto();
             this.ValidaQuantidadeProduto();

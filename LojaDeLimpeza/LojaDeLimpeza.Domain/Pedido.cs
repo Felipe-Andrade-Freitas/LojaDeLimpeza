@@ -17,7 +17,7 @@ namespace LojaDeLimpeza.Domain
         public Cliente Cliente { get { return this.cliente; } }
         public float ValorDoPedido { get; set; }
         public IList<ItemDePedido> ListaDeItemPedido = new List<ItemDePedido>();
-
+        
         public Pedido(int id, DateTime dataDoPedido, Cliente cliente)
         {
             this.idPedido = id;
@@ -31,17 +31,8 @@ namespace LojaDeLimpeza.Domain
             foreach (var itemDePedido in ListaDeItemPedido)
             {
                 itemDePedido.CalculaValorDoItem();
-                var preco = itemDePedido.ValorDoItem;
-
-                if(preco > 0)
-                {
-                    this.ValorDoPedido += itemDePedido.ValorDoItem;
-                }
-
-            }
+                this.ValorDoPedido += itemDePedido.ValorDoItem;                    
+            }     
         }
     }
 }
-
-
-               // throw new Exception("Pedido com preço negativo ou zero");

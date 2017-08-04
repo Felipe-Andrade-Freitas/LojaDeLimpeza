@@ -22,6 +22,7 @@ namespace LojaDeLimpeza.Domain
         public DateTime DataValidade { get { return this.dataValidade; } }
         public int QuantidadeEmEstoque { get { return this.quantidadeEmEstoque; } }
         public Categoria Categoria { get { return this.categoria; } }
+        public Fornecedor Fornecedor { get { return this.Fornecedor; } }
         public float Preco { get { return this.preco; } }
 
         public Produto(int id, string nome, DateTime dataFabricacao, DateTime dataValidade, int quantidade, Categoria categoria, float preco)

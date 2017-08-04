@@ -18,6 +18,6 @@ namespace LojaDeLimpeza.Domain
         {
             this.idStatus = id;
             this.nomeStatus = nomeStatus;
-        }
+        }        
     }
 }

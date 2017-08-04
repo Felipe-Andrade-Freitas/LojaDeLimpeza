@@ -7,7 +7,7 @@ namespace LojaDeLimpeza.Test
     [TestClass]
     public class ItemPedidoTeste
     {
-        [TestCategory("Calcula valor do Item")]
+        [TestCategory("Item de Pedido")]
         [TestMethod]
         public void TestCalculaValorDoItem()
         {
@@ -20,7 +20,7 @@ namespace LojaDeLimpeza.Test
             Assert.AreEqual(50, item.ValorDoItem);
         }
 
-        [TestCategory("Calcula valor do Item")]
+        [TestCategory("Item de Pedido")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestCalculaValorDoItemNegativo()
@@ -32,7 +32,7 @@ namespace LojaDeLimpeza.Test
             item.CalculaValorDoItem();
         }
 
-        [TestCategory("Calcula valor do Item")]
+        [TestCategory("Item de Pedido")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestCalculaValorDoItemZero()
@@ -45,7 +45,7 @@ namespace LojaDeLimpeza.Test
             item.CalculaValorDoItem();
         }
 
-        [TestCategory("Valida Quantidade Item de Pedido")]
+        [TestCategory("Item de Pedido")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestValidaQuantidadeItemDePedido()
