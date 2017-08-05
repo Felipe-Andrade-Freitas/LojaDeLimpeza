@@ -8,14 +8,17 @@ namespace LojaDeLimpeza.Domain
 {
     public class Fornecedor
     {
-        public int idFornecedor;
-        public string cnpj;
-        public string nomeFantasia;
-        public string razaoSocial;
+        public int IdFornecedor { get; set; }
+        public string CNPJ { get; set; }
+        public string NomeFantasia { get; set; }
+        public string RazaoSocial { get; set; }
 
-        public int IdFornecedor { get { return this.idFornecedor; } }
-        public string CNPJ { get { return this.cnpj; } }
-        public string NomeFantasia { get { return this.nomeFantasia; } }
-        public string RazaoSocial { get { return this.razaoSocial; } }
+        public Fornecedor(int id, string cnpj, string nomeFantasia, string razaoSocial)
+        {
+            this.IdFornecedor = id;
+            this.CNPJ = cnpj;
+            this.NomeFantasia = nomeFantasia;
+            this.RazaoSocial = razaoSocial;
+        }
     }
 }

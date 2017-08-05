@@ -8,51 +8,34 @@ namespace LojaDeLimpeza.Domain
 {
     public class Produto
     {
-        public int idProduto;
-        public string nomeProduto;
-        public DateTime dataFabricacao;
-        public DateTime dataValidade;
         public int quantidadeEmEstoque;
-        public Categoria categoria;
-        public float preco;
 
-        public int IdProduto { get { return this.idProduto; } }
-        public string NomeProduto { get { return this.nomeProduto; } }
-        public DateTime DataFabricacao { get { return this.dataFabricacao; } }
-        public DateTime DataValidade { get { return this.dataValidade; } }
+        public int IdProduto { get; set; }
+        public string NomeProduto { get; set; }
+        public DateTime DataFabricacao { get; set; }
+        public DateTime DataValidade { get; set; }
         public int QuantidadeEmEstoque { get { return this.quantidadeEmEstoque; } }
-        public Categoria Categoria { get { return this.categoria; } }
+        public Categoria Categoria { get; set; }
         public Fornecedor Fornecedor { get { return this.Fornecedor; } }
-        public float Preco { get { return this.preco; } }
+        public float Preco { get; set; }
 
-        public Produto(int id, string nome, DateTime dataFabricacao, DateTime dataValidade, int quantidade, Categoria categoria, float preco)
+        public Produto(int id, string nome, DateTime dataFabricacao, DateTime dataValidade, int quantidadeEmEstoque, Categoria categoria, float preco)
         {
-            this.idProduto = id;
-            this.nomeProduto = nome;
-            this.dataFabricacao = dataFabricacao;
-            this.dataValidade = dataValidade;
-            this.quantidadeEmEstoque = quantidade;
-            this.categoria = categoria;
-            this.preco = preco;
+            this.IdProduto = id;
+            this.NomeProduto = nome;
+            this.DataFabricacao = dataFabricacao;
+            this.DataValidade = dataValidade;
+            this.quantidadeEmEstoque = quantidadeEmEstoque;
+            this.Categoria = categoria;
+            this.Preco = preco;
+            ValidaPrecoProduto();
         }
 
-        public void ValidaQuantidadeProduto()
+        public bool ValidaPrecoProduto()
         {
-            if (this.quantidadeEmEstoque > 0)
+            if(this.Preco > 0)
             {
-
-            }
-            else
-            {
-                throw new Exception("A Quantidade deve ser maior que zero");
-            }
-        }
-
-        public void ValidaPreco()
-        {
-            if(this.preco > 0)
-            {
-                
+                return true;
             }
             else
             {

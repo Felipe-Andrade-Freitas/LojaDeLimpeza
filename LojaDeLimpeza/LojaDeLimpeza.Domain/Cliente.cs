@@ -8,32 +8,24 @@ namespace LojaDeLimpeza.Domain
 {
     public class Cliente
     {
-        private int idCliente;
-        private string nomeDoCliente;
-        private string cpf;
-        private string filiacao;
-        private Contato contato;
-        private Endereco endereco;
-        private StatusDoCliente statusDoCliente;
-
-        public int IdCliente { get { return this.idCliente; } }
-        public string NomeCliente { get { return this.nomeDoCliente; } }
-        public string CPF { get { return this.cpf; } }
-        public string Filiacao { get { return this.filiacao; } }
-        public Contato Contato { get { return this.contato; } }
-        public Endereco Endereco { get { return this.endereco; } }
-        public StatusDoCliente StatusDoCliente { get { return this.statusDoCliente; } }
+        public int IdCliente { get; set; }
+        public string NomeCliente { get; set; }
+        public string CPF { get; set; }
+        public string Filiacao { get; set; }
+        public Contato Contato { get; set; }
+        public Endereco Endereco { get; set; }
+        public StatusDoCliente StatusDoCliente { get; set; }
         public IList<Pedido> ListaDePedido = new List<Pedido>();
 
         public Cliente(int id, string nomeDoCliente, string cpf, string filiacao, Contato contato, Endereco endereco, StatusDoCliente statusDoCliente)
         {
-            this.idCliente = id;
-            this.nomeDoCliente = nomeDoCliente;
-            this.cpf = cpf;
-            this.filiacao = filiacao;
-            this.contato = contato;
-            this.endereco = endereco;
-            this.statusDoCliente = statusDoCliente;
+            this.IdCliente = id;
+            this.NomeCliente = nomeDoCliente;
+            this.CPF = cpf;
+            this.Filiacao = filiacao;
+            this.Contato = contato;
+            this.Endereco = endereco;
+            this.StatusDoCliente = statusDoCliente;
 
         }
     }

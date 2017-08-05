@@ -8,41 +8,32 @@ namespace LojaDeLimpeza.Domain
 {
     public class ItemDePedido
     {
-        private int id;
-        private int quantidade;
         private float valorDoItem;
-        private Produto produto;
 
-        public int IdItemPedido { get { return this.id; } }
-        public int QuantidadeProduto { get { return this.quantidade; } }
+        public int IdItemPedido { get; set; }
+        public int QuantidadeItemPedido { get; set; }
         public float ValorDoItem { get { return this.valorDoItem; } }
-        public Produto Produto { get { return this.produto; } }
+        public Produto Produto { get; set; }
 
-        public ItemDePedido(int id, int quantidade, float valorDoItem, Produto produto)
+        public ItemDePedido(int id, int quantidadeItemPedido, Produto produto)
         {
-            this.id = id;
-            this.produto = produto;
-            this.quantidade = quantidade;
-            this.valorDoItem = valorDoItem;
+            this.IdItemPedido = id;
+            this.Produto = produto;
+            this.QuantidadeItemPedido = quantidadeItemPedido;
+            AdicionaProduto();
         }
 
-        public bool ValidaValorDoItem()
+        public void AdicionaProduto()
         {
-            if (this.valorDoItem > 0)
+            ValidaQuantidadeItemDePedido();
+            CalculaValorDoItem();
+        }
+
+        public bool ValidaQuantidadeItemDePedido()
+        {
+            if(this.QuantidadeItemPedido > 0)
             {
                 return true;
-            }
-            else
-            {
-                throw new Exception("Preço do produto deve ser maior que zero");
-            }
-        }
-
-        public void ValidaQuantidadeProduto()
-        {
-            if(this.quantidade > 0)
-            {
-
             }
             else
             {
@@ -52,11 +43,14 @@ namespace LojaDeLimpeza.Domain
 
         public void CalculaValorDoItem()
         {
-            this.ValidaValorDoItem();
-            this.produto.ValidaPreco();
-            this.produto.ValidaQuantidadeProduto();
-            this.ValidaQuantidadeProduto();
-            this.valorDoItem = this.Produto.Preco * this.QuantidadeProduto;
+            if(this.Produto.Preco < 0)
+            {
+                throw new Exception("O preço do produto é inválido");
+            }
+            else
+            {
+                this.valorDoItem = this.Produto.Preco * this.QuantidadeItemPedido;
+            }
         }        
     }
 }

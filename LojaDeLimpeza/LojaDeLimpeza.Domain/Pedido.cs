@@ -7,22 +7,18 @@ using System.Threading.Tasks;
 namespace LojaDeLimpeza.Domain
 {
     public class Pedido
-    {
-        private int idPedido;
-        private DateTime dataDoPedido;
-        private Cliente cliente;
-        
-        public int IdPedido { get { return this.idPedido; } }
-        public DateTime DataDoPedido { get { return this.dataDoPedido; } }
-        public Cliente Cliente { get { return this.cliente; } }
+    {        
+        public int IdPedido { get; set; }
+        public DateTime DataDoPedido { get; set; }
+        public Cliente Cliente { get; set; }
         public float ValorDoPedido { get; set; }
         public IList<ItemDePedido> ListaDeItemPedido = new List<ItemDePedido>();
         
         public Pedido(int id, DateTime dataDoPedido, Cliente cliente)
         {
-            this.idPedido = id;
-            this.cliente = cliente;
-            this.dataDoPedido = dataDoPedido;
+            this.IdPedido = id;
+            this.Cliente = cliente;
+            this.DataDoPedido = dataDoPedido;
             CalculoValorDoPedido();
         }
 
