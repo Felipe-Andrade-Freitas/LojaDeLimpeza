@@ -8,11 +8,11 @@ namespace LojaDeLimpeza.Test
     [TestClass]
     public class PedidoTeste
     {
+        #region Base
         private Categoria categoria;
         private Produto produto;
         private ItemDePedido item;
         private ItemDePedido item2;
-        private StatusDoCliente status;
         private Endereco endereco;
         private Telefone telefone;
         private Contato contato;
@@ -22,15 +22,14 @@ namespace LojaDeLimpeza.Test
         public void Inicializa()
         {
             this.categoria = new Domain.Categoria(1, "Lavanderia");
-            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 5);
+            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 100, categoria, 5);
             this.item = new Domain.ItemDePedido(1, 10, produto);
             this.item2 = new Domain.ItemDePedido(2, 5, produto);
-            this.status = new Domain.StatusDoCliente(1, "Bom");
             this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
             this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
             this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
             contato.ListaDeTelefones.Add(telefone);
-            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, status);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
             pedido.ListaDeItemPedido.Add(item);
             pedido.ListaDeItemPedido.Add(item2);
@@ -41,12 +40,11 @@ namespace LojaDeLimpeza.Test
             this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, -5);
             this.item = new Domain.ItemDePedido(1, 10, produto);
             this.item2 = new Domain.ItemDePedido(2, 5, produto);
-            this.status = new Domain.StatusDoCliente(1, "Bom");
             this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
             this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
             this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
             contato.ListaDeTelefones.Add(telefone);
-            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, status);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
             pedido.ListaDeItemPedido.Add(item);
             pedido.ListaDeItemPedido.Add(item2);
@@ -57,17 +55,48 @@ namespace LojaDeLimpeza.Test
             this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
             this.item = new Domain.ItemDePedido(1, 10, produto);
             this.item2 = new Domain.ItemDePedido(2, 5, produto);
-            this.status = new Domain.StatusDoCliente(1, "Bom");
             this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
             this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
             this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
             contato.ListaDeTelefones.Add(telefone);
-            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, status);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
             pedido.ListaDeItemPedido.Add(item);
             pedido.ListaDeItemPedido.Add(item2);
         }
+        public void InicializaValorRetiradoEstoqueNegativo()
+        {
+            this.categoria = new Domain.Categoria(1, "Lavanderia");
+            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 5);
+            this.item = new Domain.ItemDePedido(1, 10, produto);
+            this.item2 = new Domain.ItemDePedido(2, 5, produto);
+            this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
+            this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
+            this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
+            contato.ListaDeTelefones.Add(telefone);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
+            this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
+            pedido.ListaDeItemPedido.Add(item);
+            pedido.ListaDeItemPedido.Add(item2);
+        }
+        public void InicializaValorRetiradoEstoqueZero()
+        {
+            this.categoria = new Domain.Categoria(1, "Lavanderia");
+            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 20, categoria, 5);
+            this.item = new Domain.ItemDePedido(1, 10, produto);
+            this.item2 = new Domain.ItemDePedido(2, 10, produto);
+            this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
+            this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
+            this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
+            contato.ListaDeTelefones.Add(telefone);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
+            this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
+            pedido.ListaDeItemPedido.Add(item);
+            pedido.ListaDeItemPedido.Add(item2);
+        }
+        #endregion
 
+        #region Calcula valor do pedido
         [TestCategory("Pedido")]
         [TestMethod]
         public void CalculaValorDoPedido()
@@ -76,7 +105,6 @@ namespace LojaDeLimpeza.Test
             pedido.CalculoValorDoPedido();
             Assert.AreEqual(75, pedido.ValorDoPedido);
         }
-
         [TestCategory("Pedido")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Pedido com preço negativo ou zero")]
@@ -84,7 +112,6 @@ namespace LojaDeLimpeza.Test
         {
             InicializaValorNegativo();
         }
-
         [TestCategory("Pedido")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Pedido com preço negativo ou zero")]
@@ -92,5 +119,30 @@ namespace LojaDeLimpeza.Test
         {
             InicializaValorZero();
         }
+        #endregion
+        
+        #region Retira do Estoque
+        [TestCategory("Pedido")]
+        [TestMethod]
+        public void RetiraEstoque()
+        {
+            Inicializa();
+            Assert.AreEqual(85, produto.QuantidadeEmEstoque);
+        }
+        [TestCategory("Pedido")]
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Quantidade deve ter o valor maior que zero")]
+        public void RetiraEstoqueValorNegativo()
+        {
+            InicializaValorRetiradoEstoqueNegativo();
+        }
+        [TestCategory("Pedido")]
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Quantidade deve ter o valor maior que zero")]
+        public void RetiraEstoqueValorZero()
+        {
+            InicializaValorRetiradoEstoqueZero();
+        }
+        #endregion
     }
 }

@@ -27,11 +27,15 @@ namespace LojaDeLimpeza.Domain
         {
             ValidaQuantidadeItemDePedido();
             CalculaValorDoItem();
+            RemoveEstoque();
         }
-
+        public void RemoveEstoque()
+        {
+            Produto.RemoverEstoque(QuantidadeItemPedido);
+        }
         public bool ValidaQuantidadeItemDePedido()
         {
-            if(this.QuantidadeItemPedido > 0)
+            if(this.QuantidadeItemPedido > 0 && this.QuantidadeItemPedido < this.Produto.QuantidadeEmEstoque)
             {
                 return true;
             }
@@ -40,16 +44,16 @@ namespace LojaDeLimpeza.Domain
                 throw new Exception("A Quantidade deve ser maior que zero");
             }
         }
-
         public void CalculaValorDoItem()
         {
-            if(this.Produto.Preco < 0)
+            var validaPrecoProduto = Produto.ValidaPrecoProduto();
+            if(validaPrecoProduto)
             {
-                throw new Exception("O preço do produto é inválido");
+                this.valorDoItem = this.Produto.Preco * this.QuantidadeItemPedido;
             }
             else
             {
-                this.valorDoItem = this.Produto.Preco * this.QuantidadeItemPedido;
+                throw new Exception("O preço do produto é inválido");
             }
         }        
     }

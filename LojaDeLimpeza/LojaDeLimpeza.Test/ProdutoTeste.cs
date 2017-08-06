@@ -8,11 +8,11 @@ namespace LojaDeLimpeza.Test
     [TestClass]
     public class ProdutoTeste
     {
+        #region Base
         private Categoria categoria;
         private Produto produto;
         private ItemDePedido item;
         private ItemDePedido item2;
-        private StatusDoCliente status;
         private Endereco endereco;
         private Telefone telefone;
         private Contato contato;
@@ -22,15 +22,14 @@ namespace LojaDeLimpeza.Test
         public void Inicializa()
         {
             this.categoria = new Domain.Categoria(1, "Lavanderia");
-            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 5);
+            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 30, categoria, 5);
             this.item = new Domain.ItemDePedido(1, 10, produto);
             this.item2 = new Domain.ItemDePedido(2, 5, produto);
-            this.status = new Domain.StatusDoCliente(1, "Bom");
             this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
             this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
             this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
             contato.ListaDeTelefones.Add(telefone);
-            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, status);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 1);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
             pedido.ListaDeItemPedido.Add(item);
             pedido.ListaDeItemPedido.Add(item2);
@@ -41,12 +40,11 @@ namespace LojaDeLimpeza.Test
             this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, -5);
             this.item = new Domain.ItemDePedido(1, 10, produto);
             this.item2 = new Domain.ItemDePedido(2, 5, produto);
-            this.status = new Domain.StatusDoCliente(1, "Bom");
             this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
             this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
             this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
             contato.ListaDeTelefones.Add(telefone);
-            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, status);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
             pedido.ListaDeItemPedido.Add(item);
             pedido.ListaDeItemPedido.Add(item2);
@@ -57,128 +55,134 @@ namespace LojaDeLimpeza.Test
             this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
             this.item = new Domain.ItemDePedido(1, 10, produto);
             this.item2 = new Domain.ItemDePedido(2, 5, produto);
-            this.status = new Domain.StatusDoCliente(1, "Bom");
             this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
             this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
             this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
             contato.ListaDeTelefones.Add(telefone);
-            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, status);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
             pedido.ListaDeItemPedido.Add(item);
             pedido.ListaDeItemPedido.Add(item2);
         }
+        public void InicializaQuantidadeEstoque()
+        {
+            this.categoria = new Domain.Categoria(1, "Lavanderia");
+            this.produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 30, categoria, 5);
+            this.item = new Domain.ItemDePedido(1, 10, produto);
+            this.item2 = new Domain.ItemDePedido(2, 5, produto);
+            this.endereco = new Domain.Endereco(1, "D. Pedro X", 12, "Apt 208", "Centro", "Belo Horizonte", "MG", "31454-432");
+            this.telefone = new Domain.Telefone(1, "(31) 3456-5464");
+            this.contato = new Domain.Contato(1, "Silvio", "silvio@gmail.com");
+            contato.ListaDeTelefones.Add(telefone);
+            this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
+            this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
+            pedido.ListaDeItemPedido.Add(item);
+            pedido.ListaDeItemPedido.Add(item2);
+        }
+        #endregion
 
+        #region Adiciona em Estoque
         [TestCategory("Produto")]
         [TestMethod]
         public void TestAdicionaEmEstoque()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
-
+            Inicializa();
             produto.AdicionaEstoque(10);
-            Assert.AreEqual(20, produto.QuantidadeEmEstoque);
+            Assert.AreEqual(25, produto.QuantidadeEmEstoque);
         }
-
         [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestAdicionaEmEstoqueValorNegativo()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
-
+            InicializaValorNegativo();
             produto.AdicionaEstoque(-10);
         }
-
         [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
         public void TestAdicionaEmEstoqueValorZero()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
-
+            InicializaValorZero();
             produto.AdicionaEstoque(0);
         }
+        #endregion
 
+        #region Remover Estoque
         [TestCategory("Produto")]
         [TestMethod]
-        [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
-        public void TestRemoverEmEstoqueValorZero()
+        public void TestRemoveEstoque()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
-
-            produto.RemoverEstoque(0);
+            Inicializa();
+            produto.RemoverEstoque(5);
         }
-
         [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
-        public void TestRemoverEstoqueValorNegativo()
+        public void TestRemoveEstoqueValorNegativo()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
-
+            InicializaValorNegativo();
             produto.RemoverEstoque(-10);
         }
-
         [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Quantidade á ser adicionada deve ser maior que zero")]
-        public void TestRemoverEstoqueValorZero()
+        public void TestRemoveEstoqueValorZero()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 50);
-
-            produto.AdicionaEstoque(0);
+            InicializaValorZero();
+            produto.RemoverEstoque(0);
         }
+        #endregion
 
+        #region Valida preco do produto
+        [TestCategory("Produto")]
+        [TestMethod]
+        public void TestValidaPrecoProduto()
+        {
+            Inicializa();
+            produto.ValidaPrecoProduto();
+            Assert.AreEqual(5, produto.Preco);
+        }
         [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestValidaPrecoProdutoZero()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
-
+            InicializaValorZero();
             produto.ValidaPrecoProduto();
         }
-
         [TestCategory("Produto")]
         [TestMethod]
         [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
         public void TestValidaPrecoProdutoNegativo()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, -10);
-
+            InicializaValorNegativo();
             produto.ValidaPrecoProduto();
         }
+        #endregion
 
+        #region Valida quantidade do Estoque
         [TestCategory("Produto")]
         [TestMethod]
-        public void TestValidaPrecoProduto()
+        public void TestValidaQuantidadeEstoque()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 5);
-
-            produto.ValidaPrecoProduto();
-
-            Assert.AreEqual(5, produto.Preco);
+            Inicializa();
+            Assert.AreEqual(15, produto.QuantidadeEmEstoque);
         }
-
         [TestCategory("Produto")]
         [TestMethod]
-        [ExpectedException(typeof(Exception), "Preço do produto deve ser maior que zero")]
-        public void TestValidaQuantidadeProduto()
+        [ExpectedException(typeof(Exception), "Quantidade deve ter o valor maior que zero")]
+        public void TestValidaQuantidadeEstoqueZero()
         {
-            var categoria = new Domain.Categoria(1, "Lavanderia");
-            var produto = new Domain.Produto(1, "Sabão em pó", new DateTime(2017, 07, 12), new DateTime(2018, 08, 12), 10, categoria, 0);
-
-            var item = new Domain.ItemDePedido(1, 10, produto);
-
-            item.CalculaValorDoItem();
+            InicializaValorZero();
         }
+        [TestCategory("Produto")]
+        [TestMethod]
+        [ExpectedException(typeof(Exception), "Quantidade deve ter o valor maior que zero")]
+        public void TestValidaQuantidadeEstoqueNegativo()
+        {
+            InicializaValorNegativo();
+        }
+        #endregion
     }
 }

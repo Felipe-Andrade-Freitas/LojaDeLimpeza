@@ -8,16 +8,31 @@ namespace LojaDeLimpeza.Domain
 {
     public class StatusDoCliente
     {
-        public int idStatus;
-        public string nomeStatus;
-
-        public int IdStatus { get { return this.idStatus; } }
-        public string NomeStatus { get { return this.nomeStatus; } }
-
-        public StatusDoCliente(int id, string nomeStatus)
+        public int IdStatus { get; set; }
+        public IList<Cliente> ListaDeCliente = new List<Cliente>();
+        public string NomeStatus { get; set; }
+        
+        public void VerificarStatusCliente(Cliente cliente)
         {
-            this.idStatus = id;
-            this.nomeStatus = nomeStatus;
-        }        
+            foreach(var listaDeCliente in ListaDeCliente)
+            {
+                if(cliente.LimiteDeCredito < 1000)
+                {
+                    this.IdStatus = 1;
+                }
+                else if(cliente.LimiteDeCredito <= 3000)
+                {
+                    this.IdStatus = 2;
+                }
+                else if(cliente.LimiteDeCredito > 3000)
+                {
+                    this.IdStatus = 3;
+                }
+                else
+                {
+                    throw new Exception("Status do cliente inváido");
+                }
+            }
+        }
     }
 }
