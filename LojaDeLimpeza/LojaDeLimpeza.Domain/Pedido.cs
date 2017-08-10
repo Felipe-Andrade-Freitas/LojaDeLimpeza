@@ -20,18 +20,15 @@ namespace LojaDeLimpeza.Domain
             this.IdPedido = id;
             this.Cliente = cliente;
             this.DataDoPedido = dataDoPedido;
-            AdicionaItemPedido();
-        }
-
-        public void AdicionaItemPedido()
-        {
-            foreach(var itemPedido in ListaDeItemPedido)
-            {
-                itemPedido.CalculaValorDoItem();
-            }
-            CalculoValorDoPedido();
             RetiraProdutoDoEstoque();
         }
+
+        public void AdicionaItemPedido(ItemDePedido item)
+        {
+            ListaDeItemPedido.Add(item);           
+            CalculoValorDoPedido(item);
+        }
+        
         public void RetiraProdutoDoEstoque()
         {
             foreach(var itemPedido in ListaDeItemPedido)
@@ -44,6 +41,7 @@ namespace LojaDeLimpeza.Domain
                 }
             }
         }
+
         public void RemoveProduto()
         {
             foreach(var itemPedido in ListaDeItemPedido)
@@ -51,12 +49,12 @@ namespace LojaDeLimpeza.Domain
                 ListaDeItemPedido.Remove(itemPedido);
             }
         }
-        public void CalculoValorDoPedido()
+
+        public void CalculoValorDoPedido(ItemDePedido item)
         {
             foreach (var itemDePedido in ListaDeItemPedido)
             {
-                itemDePedido.CalculaValorDoItem();
-                this.ValorDoPedido += itemDePedido.ValorDoItem;                    
+                this.ValorDoPedido += item.ValorDoItem;                    
             }     
         }
     }

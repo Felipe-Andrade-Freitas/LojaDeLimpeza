@@ -32,8 +32,6 @@ namespace LojaDeLimpeza.Test
             this.status = new StatusDoCliente() { IdStatus = 3, NomeStatus = "Bom" };
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 5000);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaStatusMedio()
         {
@@ -48,8 +46,6 @@ namespace LojaDeLimpeza.Test
             this.status = new StatusDoCliente() { IdStatus = 2, NomeStatus = "Medio" };
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 2000);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaStatusRuim()
         {
@@ -63,7 +59,6 @@ namespace LojaDeLimpeza.Test
             this.status = new StatusDoCliente() { IdStatus = 1, NomeStatus = "Ruim" };
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 500);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
         }
         #endregion
 

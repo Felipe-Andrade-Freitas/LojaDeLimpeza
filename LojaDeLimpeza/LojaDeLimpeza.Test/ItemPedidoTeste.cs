@@ -30,8 +30,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaValorItemNegativo()
         {
@@ -45,8 +43,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaValorItemZero()
         {
@@ -59,7 +55,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
         }
         public void InicializaQuantidadeItemNegativa()
         {
@@ -73,8 +68,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaQuantidadeItemZero()
         {
@@ -88,8 +81,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         #endregion
 

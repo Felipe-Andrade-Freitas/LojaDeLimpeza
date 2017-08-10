@@ -20,19 +20,21 @@ namespace LojaDeLimpeza.Domain
             this.IdItemPedido = id;
             this.Produto = produto;
             this.QuantidadeItemPedido = quantidadeItemPedido;
-            AdicionaProduto();
+            Validacoes();
         }
 
-        public void AdicionaProduto()
+        public void Validacoes()
         {
             ValidaQuantidadeItemDePedido();
             CalculaValorDoItem();
             RemoveEstoque();
         }
+
         public void RemoveEstoque()
         {
             Produto.RemoverEstoque(QuantidadeItemPedido);
         }
+
         public bool ValidaQuantidadeItemDePedido()
         {
             if(this.QuantidadeItemPedido > 0 && this.QuantidadeItemPedido < this.Produto.QuantidadeEmEstoque)
@@ -44,6 +46,7 @@ namespace LojaDeLimpeza.Domain
                 throw new Exception("A Quantidade deve ser maior que zero");
             }
         }
+
         public void CalculaValorDoItem()
         {
             var validaPrecoProduto = Produto.ValidaPrecoProduto();

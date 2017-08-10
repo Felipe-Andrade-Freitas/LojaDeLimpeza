@@ -31,8 +31,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 1);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaValorNegativo()
         {
@@ -46,8 +44,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaValorZero()
         {
@@ -61,8 +57,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         public void InicializaQuantidadeEstoque()
         {
@@ -76,8 +70,6 @@ namespace LojaDeLimpeza.Test
             contato.ListaDeTelefones.Add(telefone);
             this.cliente = new Domain.Cliente(1, "José do Carmo", "098.367.235-03", "Maira das Dores", contato, endereco, 3);
             this.pedido = new Domain.Pedido(1, new DateTime(2017, 08, 02), cliente);
-            pedido.ListaDeItemPedido.Add(item);
-            pedido.ListaDeItemPedido.Add(item2);
         }
         #endregion
 
